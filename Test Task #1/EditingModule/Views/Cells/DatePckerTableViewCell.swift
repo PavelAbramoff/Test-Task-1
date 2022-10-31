@@ -1,27 +1,25 @@
 //
-//  MainTableViewCell.swift
+//  DatePckerTableViewCell.swift
 //  Test Task #1
 //
-//  Created by TestTest on 21.10.2022.
+//  Created by TestTest on 30.10.2022.
 //
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class DatePckerTableViewCell: UITableViewCell {
     
     private let nameLabel = UILabel()
    
-    private let valueLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.text = "Test"
-        label.font = Resources.Fonts.avenirNextRegular(with: 18)
-        label.numberOfLines = 0
-        return label
+    static var idDataPickerCell = "idDataPickerCell"
+    
+    private let datePicker: UIDatePicker = {
+       let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        datePicker.subviews[0].subviews[0].subviews[0].alpha = 0
+        return datePicker
     }()
-    
-    
-    static var idMainTableViewCell = "idMainTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,28 +37,30 @@ class MainTableViewCell: UITableViewCell {
         
         nameLabel.font = Resources.Fonts.avenirNextRegular(with: 18)
         addView(nameLabel)
-        addView(valueLabel)
+        contentView.addView(datePicker)
     }
     
     public func configure(name: String) {
         nameLabel.text = name
+       
     }
 }
 
-extension MainTableViewCell {
+// MARK: - Set Constraints
+
+extension DatePckerTableViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.35),
-        
-            valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -5),
-            valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10)
+            
+            datePicker.centerYAnchor.constraint(equalTo: centerYAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            
         ])
     }
 }
+
+

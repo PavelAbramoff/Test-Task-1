@@ -5,7 +5,7 @@
 //  Created by TestTest on 21.10.2022.
 //
 
-import Foundation
+import UIKit
 
 enum Resources {
     
@@ -15,5 +15,17 @@ enum Resources {
         case thirdName = "Отчество"
         case dataBirthsday = "Дата рождения"
         case gender = "Пол"
+    }
+    
+    enum Gender: String, CaseIterable {
+        case noSpecified = "Не указано"
+        case man = "Мужской"
+        case women = "Женский"
+    }
+    
+    enum Fonts {
+        static func avenirNextRegular(with size: CGFloat) -> UIFont? {
+            UIFont(name: "Avenir Next", size: size)
+        }
     }
 }
